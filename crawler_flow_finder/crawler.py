@@ -14,13 +14,7 @@ from multiprocessing import Process
 '''
 run command:
 
-python3 crawler.py --database test.db --flows_dir flows --domains tranco-5k.txt --ip_addr [YOUR IP ADDRESS]   --debug
-
-for example: 
-python3 crawler.py --database test.db --flows_dir flows --domains tranco-5k.txt --ip_addr 192.168.50.97  --debug
-
-or(in case youre running the crawler and the tainted chrome on the same machine):
-python3 crawler.py --database test.db --flows_dir flows --domains tranco-5k.txt --ip_addr localhost  --debug
+python3 crawler.py --database test.db --flows_dir flows --domains tranco-5k.txt   --debug
 
 This backend crawler listens for a conneciton from chrome on port localhost:8787.
 It then waits to receive a start message from chrome like so:
@@ -48,7 +42,6 @@ MAX_OUTSTANDING_URLS = 20 #the number of tabs to open in chrome while crawling
 #initializing parameters
 
 flows_dir = ""
-ip_addr = ""
 websocket_to_chrome = None
 outstanding_urls = 0
 debug = False
@@ -226,7 +219,9 @@ async def send_urls(websocket, cur):
                 return True
         url = urls_to_send.pop()
         log(f"Sending {url}....")
-        msg = f'{{"url": "{url[0]}"}}'
+        msg = {'url': str(url[0]) }
+        msg = json.dumps(msg)
+        #msg = f'{{"url": "{url[0]}"}}'
         
         await websocket.send(msg)
         #log(f"Sent {msg}.")
@@ -241,7 +236,7 @@ async def process_start(websocket, cur):
     log(f"Got start.")
     await send_urls(websocket, cur)
 
-
+#gets messages from chrome
 async def process_message(websocket):
     global outstanding_urls
     global con
@@ -275,9 +270,8 @@ async def process_message(websocket):
                 return
         
            
-#async with websockets.serve(process_message, "192.168.50.97", PORT, ping_interval=None, max_size = 1000000000):
 async def websocket_server():
-    async with websockets.serve(process_message, ip_addr, PORT, ping_interval=None, max_size = 100000000000):
+    async with websockets.serve(process_message, "localhost", PORT, ping_interval=None, max_size = 100000000000):
         await asyncio.Future()  # run forever
 
 
@@ -290,8 +284,6 @@ def main():
                         help='Enter the path to directiory where all flow files will be saved')
     parser.add_argument('--domains', type=str, required=True,
                         help='Enter the path to the file that contains the domains to crawl')
-    parser.add_argument('--ip_addr', type=str, required=True,
-                        help='Enter the ip address of the machine this script currently running on to initiate a websocket listener')
     parser.add_argument('--debug', dest='debug', action='store_true')
     args = parser.parse_args()
     
@@ -299,8 +291,6 @@ def main():
     flows_dir = args.flows_dir
     global debug
     debug = args.debug
-    global ip_addr
-    ip_addr = args.ip_addr
 
     # Init DB
     global con

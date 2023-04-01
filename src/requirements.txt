@@ -1,0 +1,4 @@
+pyesprima
+beautifulsoup4
+demjson
+html5lib
