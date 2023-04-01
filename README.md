@@ -90,4 +90,5 @@ This project is licensed under the terms of the AGPL3 license which you can find
 
 # sources
 https://github.com/cispa/persistent-clientside-xss/
+https://swag.cispa.saarland/papers/lekies2013flows.pdf
 
