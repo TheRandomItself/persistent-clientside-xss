@@ -66,8 +66,6 @@ There is one small caveat to changing the payload, which should be easy to find 
 # Script Source Exploits
 When we observe a flow into the src property of a script which happens before the path of the url start, we can redirect the hostname to one under our own control. In ```config.py``` it can be configured which hostname should be used and in ```configs/``` you can find the NGINX server block which we used to always host the attacker file no matter which subdomains/path where intended by the developers.
 
-# License
-This project is licensed under the terms of the AGPL3 license which you can find in ```LICENSE```.     
 
 
 ## How to start the crawler       
@@ -87,5 +85,9 @@ python3 crawler.py --database test.db --flows_dir flows --domains tranco-5k.txt 
 The crawler scans by default the first 1000 domains from tranco-5k.txt. You can change this number by changing the DOMAIN_LIMIT parameter in crawler.py.     
 Same goes for the depth of the crawler, the max number of urls per domain and the number of chrome tabs the crawler opens.
 
- 
+ # License
+This project is licensed under the terms of the AGPL3 license which you can find in ```LICENSE```.     
+
+#sources
+https://github.com/cispa/persistent-clientside-xss/
 
