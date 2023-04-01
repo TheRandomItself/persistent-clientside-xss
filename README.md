@@ -88,6 +88,6 @@ Same goes for the depth of the crawler, the max number of urls per domain and th
  # License
 This project is licensed under the terms of the AGPL3 license which you can find in ```LICENSE```.     
 
-#sources
+# sources
 https://github.com/cispa/persistent-clientside-xss/
 
