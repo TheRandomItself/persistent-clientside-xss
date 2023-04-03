@@ -69,7 +69,7 @@ When we observe a flow into the src property of a script which happens before th
 
 
 # The crawler     
-
+located in crawler_flow_finder     
 The crawler scans by default the first 1000 domains from tranco-5k.txt. You can change this number by changing the DOMAIN_LIMIT parameter in crawler.py.     
 Same goes for the depth of the crawler, the max number of urls per domain and the number of chrome tabs the crawler opens.       
 
@@ -80,8 +80,11 @@ python3 crawler.py --database test.db --flows_dir flows --domains tranco-5k.txt 
 ```    
 Next, run the tainted chrome and them run minimal_extension. You can also change the time spent in every page by changing the TIMEOUT parameter in the backscript of the minimal extension
 
-# Exploit filter
-
+# Exploit crawler
+located in exploit_filter folder.     
+The exploit crawler takes all the exploit candidates in exploit_urls.txt and for each one checks wether its a successfull exploit or not.     
+In addition it creates a database which stores all exploits and for each one stores wether it worked or not(with the column is_exploit in the urls table) 
+The exploit crawler opens all the exploit urls in exploit_urls.txt with the tainted chrome and checks if the exploit candidate succeeded or not
 
  # License
 This project is licensed under the terms of the AGPL3 license which you can find in ```LICENSE```.     

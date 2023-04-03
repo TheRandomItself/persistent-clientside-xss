@@ -4,7 +4,7 @@ var initial_links = ["https://www.google.com/"];//contains the domains that we s
 var url_links = [["https://www.google.com/"]]; //contains the urls for every tab
 var single_tab_links = []; //temporarily contains the urls of a tab
 var visited_urls = []; 
-
+var TIMEOUT = 30000
 //listens for connections from the content script
 chrome.runtime.onConnect.addListener(function(port) {
  //listens for a message from the content script. the message in this case informs if the url in the tab we got the message from is an exploit or not
@@ -96,7 +96,7 @@ function onMessage(evt){
     console.log(tab);
     window.url_map[tab.id] = obj_msg.url;
  
-        setTimeout(closeSession, 30000, tab);//waits 30 seconds before sending to the crawler to close the tabs
+        setTimeout(closeSession, TIMEOUT, tab);//waits 30 seconds before sending to the crawler to close the tabs
     });
 
 }
