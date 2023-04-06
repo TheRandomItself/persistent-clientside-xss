@@ -84,6 +84,11 @@ Next, run the tainted chrome and them run minimal_extension. You can also change
 located in exploit_filter folder.     
 The exploit crawler takes all the exploit candidates in exploit_urls.txt and for each one checks wether its a successfull exploit or not.     
 In addition it creates a database which stores all exploits and for each one stores wether it worked or not(with the column is_exploit in the urls table) 
+run the following command:
+
+```
+python3 exploit_scanner.py --database test.db --exploits vulnerability_urls.txt  --debug
+```
 The exploit crawler opens all the exploit urls in exploit_urls.txt with the tainted chrome and checks if the exploit candidate succeeded or not
 
  # License
