@@ -78,7 +78,7 @@ run the following command from crawler_flow_finder folder:
 ```
 python3 crawler.py --database test.db --flows_dir flows --domains tranco-5k.txt --debug
 ```    
-Next, run the tainted chrome and then run minimal_extension. You can also change the time spent in every page by changing the TIMEOUT parameter in the backscript of the minimal extension
+Next, run the tainted chrome and run minimal_extension. You can also change the time spent in every page by changing the TIMEOUT parameter in the backscript of the minimal extension
 
 # Exploit crawler
 located in exploit_filter folder.     
@@ -89,7 +89,7 @@ run the following command:
 ```
 python3 exploit_scanner.py --database test.db --exploits vulnerability_urls.txt  --debug
 ```
-Next, run the tainted chrome and then run exploit_extension.
+Next, run the tainted chrome and exploit_extension.
 
  # License
 This project is licensed under the terms of the AGPL3 license which you can find in ```LICENSE```.     
