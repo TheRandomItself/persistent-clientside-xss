@@ -80,6 +80,9 @@ python3 crawler.py --database test.db --flows_dir flows --domains tranco-5k.txt 
 ```    
 Next, run the tainted chrome and run minimal_extension. You can also change the time spent in every page by changing the TIMEOUT parameter in the backscript of the minimal extension
 
+# Attack generator
+attack_generator.py located in src folder, can help with generating attacks, recommend checking.
+
 # Exploit crawler
 located in exploit_filter folder.     
 The attack scanner takes all the attack candidates in url_attacks.txt and for each one checks wether its a successfull exploit or not.     
